@@ -1,0 +1,30 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <WebView
+        android:id="@+id/videowebView1"
+        android:layout_width="match_parent"
+        android:layout_height="354dp"
+        android:layout_x="3dp"
+        android:layout_y="1dp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="12dp"
+        android:layout_y="371dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="922dp"
+        android:layout_y="359dp"
+        android:text="Button" />
+
+</AbsoluteLayout>
