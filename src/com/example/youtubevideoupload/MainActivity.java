@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -40,15 +40,42 @@ public class MainActivity extends Activity {
 		});
 		
 	}
-	
+
 	public void googlePing(){
 		
-		WebSettings webSettings = websiteWebView.getSettings();
-		webSettings.setJavaScriptEnabled(true);
+		websiteWebView.setWebChromeClient(new WebChromeClient() {
+	        public void onProgressChanged(WebView view, int progress)
+	        {
+	            MainActivity.this.setTitle("Loading...");
+	            MainActivity.this.setProgress(progress * 100);
+
+	            if(progress == 100)
+	            	MainActivity.this.setTitle(R.string.app_name);
+	        }
+	    });
 		
-		String url = "http://www.google.com";
+		websiteWebView.setWebViewClient(new WebViewClient() {
+	        @Override
+	        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl)
+	        {
+	            // Handle the error
+	        }
+
+	        @Override
+	        public boolean shouldOverrideUrlLoading(WebView view, String url)
+	        {
+	            view.loadUrl(url);
+	            return true;
+	        }
+	    });
+	     
+		websiteWebView.loadUrl("http://www.google.com");
 		
-		shouldOverrideUrlLoading(websiteWebView, url);
+//		WebSettings webSettings = websiteWebView.getSettings();
+//		webSettings.setJavaScriptEnabled(true);
+		
+//		String url = "http://www.google.com";
+//		shouldOverrideUrlLoading(websiteWebView, url);
 		
 	}
 
